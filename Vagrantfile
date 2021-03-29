@@ -21,6 +21,9 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
 	vb.memory = "1024"
   end
+  config.vm.network(
+	"forwarded_port", guest: 8000, host: 8000, host_ip: "127.0.0.1"
+  )
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -36,6 +39,9 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
+  
+  
+  ###config.vm.provision “shell”, path: “setup.sh”, privileged: false
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
